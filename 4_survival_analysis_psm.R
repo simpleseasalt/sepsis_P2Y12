@@ -12,9 +12,9 @@ library(survival)
 library(survminer)
 library(forestmodel)
 
-setwd("D:/OneDrive/After_work/2024/sic_antiplatelet")
+setwd(mimic_path)
 
-load("output/sic_antiplatet.Rdata")
+load("sepsis_P2Y12/output/sepsis_P2Y12.Rdata")
 
 # 1---------------------------------------- survival analysis
 # 2---------------------------------------- 30 days
@@ -128,7 +128,7 @@ coxplot_psm
 dev.off()
 
 coxplot_psm$data %>%
-    write_csv(file = "D:/OneDrive/After_work/2024/sic_antiplatelet/output/cox_result_psm.csv")
+    write_csv(file = "sepsis_P2Y12/output/cox_result_psm.csv")
 
 # 2---------------------------------------- total
 
@@ -174,8 +174,8 @@ coxplot_total
 dev.off()
 
 coxplot_total$data %>%
-    write_csv(file = "D:/OneDrive/After_work/2024/sic_antiplatelet/output/cox_result_total.csv")
+    write_csv(file = "sepsis_P2Y12/output/cox_result_total.csv")
 
-save.image(file = "D:/OneDrive/After_work/2024/SIC_antiplatelet/output/sic_antiplatet.Rdata", compress = TRUE)
+save.image(file = "sepsis_P2Y12/output/sepsis_P2Y12.Rdata", compress = TRUE)
 
 # ! end

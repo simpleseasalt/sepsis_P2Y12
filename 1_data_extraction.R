@@ -1,13 +1,16 @@
 # | ---------------------------------------
 # | Author: Simplezzz
 # | Date: 2024-01-19 19:30:25
-# | LastEditTime: 2024-03-01 20:41:28
-# | FilePath: \R_script\1_data_extraction.R
-# | Description:
+# | LastEditTime: 2024-03-05 13:20:25
+# | FilePath: d:\OneDrive\After_work\2024\sic_antiplatelet\github\1_data_extraction.R
+# | Description: Data extraction
 # | ---------------------------------------
 
 # following packages are needed, install them before run this script.
 # install.packages("data.table", "tidyverse", "magrittr", "tidymodels", "tidylog", "VIM", "naniar", "survival", "survminer", "forestmodel", "rstatix", "nortest", "MatchIt", "gtsummary")
+# Do not load all packages to prevent conflicts
+
+# This script requires at least 32GB of RAM
 
 library(data.table)
 library(tidyverse)
@@ -17,7 +20,9 @@ tidymodels::tidymodels_prefer()
 
 # 1----------------------------------------
 
-setwd("D:/Physionet") # the directory of "mimic-iv-2.2" and "mimic_derived"
+mimic_path <- "yourpath" # the directory of "mimic-iv-2.2" and "mimic_derived"
+
+setwd(mimic_path) 
 
 # The csv files under the "mimic_derived" folder were created by the sql scripts obtained from "https://github.com/MIT-LCP/mimic-code".
 
@@ -394,6 +399,6 @@ final_data <- data_simple_impute %>%
         )
     )
 
-save.image(file = "D:/OneDrive/After_work/2024/SIC_antiplatelet/output/sic_antiplatet.Rdata", compress = TRUE)
+save.image(file = "sepsis_P2Y12/output/sepsis_P2Y12.Rdata", compress = TRUE)
 
 # ! end

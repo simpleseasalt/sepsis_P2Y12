@@ -1,8 +1,8 @@
 # | ---------------------------------------
 # | Author: Simplezzz
 # | Date: 2024-02-06 15:48:59
-# | LastEditTime: 2024-03-01 20:19:12
-# | FilePath: \R_script\3_statistics_total.R
+# | LastEditTime: 2024-03-05 13:25:00
+# | FilePath: d:\OneDrive\After_work\2024\sic_antiplatelet\github\3_statistics_total.R
 # | Description:
 # | ---------------------------------------
 
@@ -12,9 +12,9 @@ library(rstatix)
 library(nortest)
 library(gtsummary)
 
-setwd("D:/OneDrive/After_work/2024/sic_antiplatelet")
+setwd(mimic_path)
 
-load("output/sic_antiplatet.Rdata")
+load("sepsis_P2Y12/output/sepsis_P2Y12.Rdata")
 
 # 1----------------------------------------
 
@@ -178,6 +178,6 @@ psm_summary %>%
     rename("variable" = `**Characteristic**`) %>%
     left_join(p_value) %>%
     mutate(p_final = ifelse(p_final >= 0.001, round(p_final, 3), "< 0.001")) %>%
-    write_csv(file = "output/total_summary.csv")
+    write_csv(file = "sepsis_P2Y12/output/total_summary.csv")
 
 # ! end

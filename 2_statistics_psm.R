@@ -13,9 +13,9 @@ library(nortest)
 library(MatchIt)
 library(gtsummary)
 
-setwd("D:/OneDrive/After_work/2024/sic_antiplatelet")
+setwd(mimic_path)
 
-load("output/sic_antiplatet.Rdata")
+load("sepsis_P2Y12/output/sepsis_P2Y12.Rdata")
 
 # 1----------------------------------------
 
@@ -44,7 +44,7 @@ data_psm <- match.data(psm) %>%
         group = as.factor(group)
     )
 
-write_csv(data_psm, file = "D:/OneDrive/After_work/2024/sic_antiplatelet/output/data_psm.csv")
+write_csv(data_psm, file = "sepsis_P2Y12/output/data_psm.csv")
 
 # 1---------------------------------------- numeric variable
 
@@ -198,7 +198,7 @@ psm_summary %>%
     rename("variable" = `**Characteristic**`) %>%
     left_join(p_value) %>%
     mutate(p_final = ifelse(p_final >= 0.001, round(p_final, 3), "< 0.001")) %>%
-    write_csv(file = "output/psm_summary.csv")
+    write_csv(file = "sepsis_P2Y12/output/psm_summary.csv")
 
 # 1---------------------------------------- Non-fatal LOS in hospital
 
@@ -214,7 +214,7 @@ los_hosp_data %>%
 non_fatal_los_hosp <- los_hosp_data %>%
     wilcox_test(los_hospital ~ group)
 
-save.image(file = "D:/OneDrive/After_work/2024/SIC_antiplatelet/output/sic_antiplatet.Rdata", compress = TRUE)
+save.image(file = "sepsis_P2Y12/output/sepsis_P2Y12.Rdata", compress = TRUE)
 
 # ! end
 
